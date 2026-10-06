@@ -21,14 +21,18 @@ streamlit run app.py     # dashboard
 2. `train.py` – LogReg vs RandomForest vs XGBoost, **StratifiedGroupKFold by subject**, reports ROC-AUC / sensitivity / specificity / F1, SHAP summary.
 3. `app.py` – upload .wav → score + SHAP waterfall → saved to SQLite → baseline (first 3 sessions) vs recent trend.
 
-### 2. Handwriting & Movement (Coming Soon)
-Planned feature to analyze spiral drawings and hand movement tracking to complement voice data.
+### 2. Handwriting & Movement
+Extracts digital biomarkers related to handwriting from spiral drawings via computer vision.
+
+#### Pipeline
+1. `vision_features.py` – OpenCV processes the drawing to extract kinematic features like Tremor Index, Thickness Variance, and Drawing Length.
+2. `app.py` – Upload image → visual overlay generation + feature extraction → saved to SQLite → tracking tremor and pressure hesitations over time.
 
 ## Research ideas for your report
 - Compare random split vs subject-wise split to show how much leakage inflates accuracy.
 - Feature ablation: jitter-only vs shimmer-only vs all.
 - Add the larger Sakar dataset (252 subjects) as an independent external test set.
-- Implement hand/finger movement analysis via computer vision (e.g., OpenCV, MediaPipe) on spiral drawings and handwriting.
+- Extend computer vision analysis to live video tracking of hand/finger movements via MediaPipe.
 
 ## Known limitations (state these honestly)
 - Only 31 subjects (23 PD) in the voice model, so metrics have wide uncertainty.
